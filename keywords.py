@@ -1,4 +1,4 @@
-lookuptable = {
+keywords_map = {
     "False": 0,
     "None": 1,
     "True": 2,

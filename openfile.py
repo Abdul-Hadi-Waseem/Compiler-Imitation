@@ -1,14 +1,3 @@
-def openSheeshfile(filename):
-    """
-    Args: filename [string] name of the sheesh file
-
-    returns file object
-    """
-    fo = open(filename, "r")
-    # fo.close()
-
-    return fo
-
 # filename = "sheeshfile.txt"
 # fullfile = openSheeshfile(filename)
 # linenum=1

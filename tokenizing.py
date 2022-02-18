@@ -1,8 +1,7 @@
-from lookuptable import lookuptable
+from keywords import keywords_map
 
 def token_val(token):
-    try:
-        return lookuptable[token]
-    except:
-        lookuptable[token] = len(lookuptable)
-        return lookuptable[token]
+    
+    keywords_map[token] = keywords_map.get(token, len(keywords_map))
+    
+    return keywords_map[token]

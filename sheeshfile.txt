@@ -5,5 +5,5 @@ a=b+c
 if(a<=b)
 a = b - c
 << what is this hello "Welcome"
-print("Maa chudao")
+print("a")
 last word

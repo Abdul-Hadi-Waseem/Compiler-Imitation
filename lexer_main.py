@@ -1,5 +1,6 @@
-from openfile import openSheeshfile
 import os
+
+# 1. add comment feature
 
 def progress_meter(curr, tot):
     print(f"Progress : {round(curr*100/tot, 2)}%", end="\r")

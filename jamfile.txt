@@ -1,0 +1,6 @@
+Hello Dr. ATISHAY Jain(fake) (PHD in ways of fish porn(bengali)) 
+
+if (nigga_color=="White")
+{
+    nigga_category = "Wigga"
+}

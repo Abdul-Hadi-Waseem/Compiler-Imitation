@@ -1,3 +1,5 @@
+
+
 def is_identifier(s):
     """
     Args: s [string] to be evaluated as a identifier
@@ -137,3 +139,28 @@ print(is_string_literal("\" \""))
 print(is_string_literal("\" \""))
 print(is_string_literal("\" \""))
 print(is_string_literal("\" \""))
+
+def is_operator(o, operator_list):
+    
+    """
+
+    """
+
+    return o in operator_list
+
+def is_delimiter(d, delimeter_list):
+    """
+    
+    """
+    return d in delimeter_list
+
+#Syntax Specifications Remaining
+
+#for
+#while
+#if else
+#boolean
+#All the keywords
+
+
+

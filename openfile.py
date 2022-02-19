@@ -1,3 +1,19 @@
+def openSheeshfile(filename):
+    """
+    Args: filename [string] name of the sheesh file
+    returns file object
+    """
+    foo = open(filename,"r+")
+    # for line in foo.readlines():
+    #     if line=="":
+    #         foo.seek(1)
+    foo.read().strip("\n")
+    foo.write("\n")
+    return foo
+
+# f = openSheeshfile("sheeshfile.txt")
+# print(f.read())
+    
 # filename = "sheeshfile.txt"
 # fullfile = openSheeshfile(filename)
 # linenum=1

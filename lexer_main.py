@@ -28,35 +28,37 @@ def lexicar(file_path):
             print("\rProgress : {0}%".format(round(cnt*100/file_size, 2)), end="\r")
             # progress_meter(cnt, file_size)
             curr_char = f.read(1)
+            
+            #KEEP THIS AT TOP. COMPATIBILITY THING.
+            if not curr_char:           #Checking EOF
+                break
+            if curr_char=="\n":         #Increment line count
+                line_count+=1
 
+
+            #SUPPORT FOR QUOTES
+            if curr_char == "\"":
+                lexeme_buffer += curr_char
+                if not quote_flag:
+                    quote_flag = True
+                else:
+                    quote_flag = False
+                continue
+
+
+            #COMMENT SUPPORT
             if curr_char == "#":
                 cumment_flag = True
                 continue
-
             if cumment_flag:
                 if curr_char == "\n":
                     cumment_flag = False
                 continue
-            
-            if not curr_char:           #Checking EOF
-                break
 
-            if curr_char=="\n":         #Increment line count
-                line_count+=1
 
-            if quote_flag and curr_char != "\"":
-                lexeme_buffer += curr_char
-
-            if not (curr_char.isdigit() or curr_char.lower().isalpha() or curr_char == "_"):        #Delimiter check
+            if not (curr_char.isdigit() or curr_char.lower().isalpha() or curr_char == "_" or quote_flag):        #Delimiter check
                 if not lexeme_buffer=="":                                              #Prevent empty symbols
                     lexeme_list.append([line_count, lexeme_buffer])
-
-                if curr_char == "\"":
-                    if not quote_flag:
-                        quote_flag = True
-                    else:
-                        quote_flag = False
-                    continue
 
                 if curr_char in "<>!=":                                                #Support for <= != == >=
                     temp = f.tell()
@@ -66,10 +68,11 @@ def lexicar(file_path):
                         lexeme_buffer = ""
                         # continue
                     f.seek(temp)
-                    
+
                 if curr_char in " \n":                                                 #New line and space are proper delimiters
                     lexeme_buffer = ""
                     continue
+
                 lexeme_list.append([line_count, curr_char])
                 lexeme_buffer = ""
                 continue

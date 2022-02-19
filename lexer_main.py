@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from matplotlib.pyplot import table
 from terminaltables import AsciiTable
@@ -7,7 +8,7 @@ from openfile import openSheeshfile, getFileSize
 from tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
 
 
-def lexicar(file_path):
+def lexicar(file_path="sheeshfile.txt"):
     """
     args: file_path [string] path to the file
     Reads a file, generates lexeme list, returns  it
@@ -100,8 +101,11 @@ def lexicar(file_path):
 
 
 if __name__ == "__main__":
-    lexeme_list = lexicar("sheeshfile.txt")
-    # lexeme_list = [[str(i) for i in j] for j in lexeme_list]
+    # get filename from the arguments in the terminal
+
+    filename = sys.argv[1]
+    # filename = "sheeshfile.txt"
+    lexeme_list = lexicar(filename)
     lexeme_list = [["Token line", "Token", "Token value"]] + lexeme_list
     lexeme_list_table = AsciiTable(lexeme_list)
     print(lexeme_list_table.table)

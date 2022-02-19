@@ -1,9 +1,6 @@
 import os
 import time 
 
-# def progress_meter(curr, tot):
-#     print(f"Progress : {round(curr*100/tot, 2)}%", end="\r")
-
 def lexicar(file_path):
     """
     Reads a file, generates lexeme list, returns it
@@ -69,6 +66,7 @@ def lexicar(file_path):
                         lexeme_buffer = ""
                         # continue
                     f.seek(temp)
+                    
                 if curr_char in " \n":                                                 #New line and space are proper delimiters
                     lexeme_buffer = ""
                     continue

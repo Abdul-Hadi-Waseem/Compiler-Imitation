@@ -8,7 +8,7 @@ def openSheeshfile(filename):
     returns file object
     """
     try:
-        foo = open(filename,"r+")
+        foo = open(filename, "r+")
         return foo
     except:
         # check if file exists
@@ -16,6 +16,7 @@ def openSheeshfile(filename):
             print("ERR: File does not exists")
             FileNotFoundError()
             sys.exit(1)
+
 
 def getFileSize(filename):
     try:

@@ -1,12 +1,10 @@
 import os
+import time 
 
-# 1. add comment feature
-
-def progress_meter(curr, tot):
-    print(f"Progress : {round(curr*100/tot, 2)}%", end="\r")
+# def progress_meter(curr, tot):
+#     print(f"Progress : {round(curr*100/tot, 2)}%", end="\r")
 
 def lexicar(file_path):
-
     """
     Reads a file, generates lexeme list, returns it
     """
@@ -28,8 +26,9 @@ def lexicar(file_path):
         quote_flag = False
         while True:
             cnt+=1
-            # time.sleep(0.001)
-            progress_meter(cnt, file_size)
+            # time.sleep(0.00001)
+            print("\rProgress : {0}%".format(round(cnt*100/file_size, 2)), end="\r")
+            # progress_meter(cnt, file_size)
             curr_char = f.read(1)
             if not curr_char:           #Checking EOF
                 break
@@ -57,7 +56,7 @@ def lexicar(file_path):
                         lexeme_buffer = curr_char+"="
                         lexeme_list.append([line_count, lexeme_buffer])
                         lexeme_buffer = ""
-                        continue
+                        # continue
                     f.seek(temp)
                 if curr_char in " \n":                                                 #New line and space are proper delimiters
                     lexeme_buffer = ""
@@ -72,6 +71,6 @@ def lexicar(file_path):
 
 if __name__ == "__main__":
     lexeme_list = (lexicar("sheeshfile.txt"))
-    for lexeme in lexeme_list:
-        print(f"{lexeme[0]} : {lexeme[1]}")
+    for i, lexeme in enumerate(lexeme_list):
+        print(f"{i}:: {lexeme[1]} :: {lexeme[0]}")
         # print(lexeme[1], end=" ")

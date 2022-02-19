@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 class Solution:
     def getDecimalValue(self, head):s
         num = head.val
@@ -5,3 +6,14 @@ class Solution:
             num = num * 2 + head.next.val
             head = head.next
         return num
+=======
+#Hello this is a sheesh file. Sheeshin   about in da wild.
+Hello again this is another file.!!!!
+Split dis:
+a=b+c
+if(a<=b)
+a = b - c
+<< what is this hello "Welcome"
+print("a")
+last word
+>>>>>>> Stashed changes

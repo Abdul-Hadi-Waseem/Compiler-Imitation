@@ -24,12 +24,23 @@ def lexicar(file_path):
         lexeme_buffer = ""
         cnt = 0
         quote_flag = False
+        cumment_flag = False
         while True:
             cnt+=1
             # time.sleep(0.00001)
             print("\rProgress : {0}%".format(round(cnt*100/file_size, 2)), end="\r")
             # progress_meter(cnt, file_size)
             curr_char = f.read(1)
+
+            if curr_char == "#":
+                cumment_flag = True
+                continue
+
+            if cumment_flag:
+                if curr_char == "\n":
+                    cumment_flag = False
+                continue
+            
             if not curr_char:           #Checking EOF
                 break
 

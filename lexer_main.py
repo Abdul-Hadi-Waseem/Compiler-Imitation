@@ -9,7 +9,9 @@ from tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
 
 def lexicar(file_path):
     """
-    Reads a file, generates lexeme list, returns it
+    args: file_path [string] path to the file
+    Reads a file, generates lexeme list, returns  it
+    returns lexeme_list [list] list of lexeme_line, lexeme and lexeme_token_number
     """
 
     f = openSheeshfile(file_path)

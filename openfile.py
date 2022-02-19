@@ -19,6 +19,10 @@ def openSheeshfile(filename):
 
 
 def getFileSize(filename):
+    """
+    Args: filename [string] name of the sheesh file
+    returns file filesize
+    """
     try:
         file_size = os.path.getsize(filename)
         return file_size

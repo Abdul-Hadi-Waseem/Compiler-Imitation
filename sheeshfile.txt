@@ -1,11 +1,11 @@
 
 
-From
+from
 c = 12
 a = b
 
 c = d + e
-llo Dr. Jain
+Hello Dr. Jain
 if (nigga_color=="White")
 {
     nigga_category = "Wigga" 
@@ -19,6 +19,5 @@ if (nigga_color=="White")
 #    }
 #    nigga_category = "Nigga"
 #}
-
-
+whattttt
 

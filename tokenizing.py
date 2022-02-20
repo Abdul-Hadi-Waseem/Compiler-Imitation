@@ -53,7 +53,9 @@ def addTokenVal(lexeme_list):
             temp_lexeme_list.append([linenum, lexeme, delimeter_value,"delimeter"])
         if not (delimeter_value or operator_value):
             token_value,token_category = token_info(lexeme)
-            print(f"Op Val : {operator_value}, del val: {delimeter_value}, token val: {token_value}, token category:{token_category}")
+            if lexeme == "------":
+                token_category = "new line"
+            # print(f"Op Val : {operator_value}, del val: {delimeter_value}, token val: {token_value}, token category:{token_category}")
             temp_lexeme_list.append([linenum, lexeme, token_value,token_category])
     return temp_lexeme_list
 

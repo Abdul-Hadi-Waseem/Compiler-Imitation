@@ -1,6 +1,0 @@
-Hello Dr. ATISHAY Jain(fake)
-
-if (nigga_color=="White")
-{
-    nigga_category = "Wigga"
-}

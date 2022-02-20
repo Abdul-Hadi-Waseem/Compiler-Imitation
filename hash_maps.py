@@ -69,3 +69,7 @@ keywords_map = {
     "with": 57,
     "yield": 58,
 }
+
+identifier_list= {
+    "------":59
+}

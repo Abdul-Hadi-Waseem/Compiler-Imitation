@@ -1,5 +1,5 @@
-from hash_maps import keywords_map, identifier_list, operator_list, delimiter_list
-from tokenizer_utils import (
+from data.hash_maps import keywords_map, identifier_list, operator_list, delimiter_list
+from utils.tokenizer_utils import (
     is_valid_token,
     is_string_literal,
     is_integer_literal,

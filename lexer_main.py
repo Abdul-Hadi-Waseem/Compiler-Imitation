@@ -4,9 +4,10 @@ import time
 from matplotlib.pyplot import table
 from terminaltables import AsciiTable
 from colorclass import Color, Windows
+Windows.enable()
 
-from openfile import openSheeshfile, getFileSize
-from tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
+from utils.openfile import openSheeshfile, getFileSize
+from utils.tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
 
 
 def lexicar(file_path="sheeshfile.txt"):

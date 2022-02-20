@@ -3,6 +3,7 @@ import sys
 import time
 from matplotlib.pyplot import table
 from terminaltables import AsciiTable
+from colorclass import Color, Windows
 
 from openfile import openSheeshfile, getFileSize
 from tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
@@ -56,19 +57,19 @@ def lexicar(file_path="sheeshfile.txt"):
             f.readline()
             line_count += 1
             continue
-        
-        #Errors support
-        if curr_char=="\n" and quote_flag:
-            errors.append(["Error parsing at line",line_count])
+
+        # Errors support
+        if curr_char == "\n" and quote_flag:
+            errors.append(["Error parsing at line", line_count])
             quote_flag = False
             # print("Error parsing at line",line_count)
             # sys.exit(2)
             continue
 
         if curr_char == ".":
-                if lexeme_buffer[0].isdigit():
-                    lexeme_buffer += "."
-                    continue
+            if lexeme_buffer[0].isdigit():
+                lexeme_buffer += "."
+                continue
 
         if not (
             curr_char.isdigit()
@@ -109,14 +110,15 @@ def lexicar(file_path="sheeshfile.txt"):
     if not lexeme_buffer == "":  # append if anything still left in the lexeme_buffer
         lexeme_list.append([line_count, lexeme_buffer])
 
-    #Print Error        
+    # Print Error
     if errors:
         for er in errors:
-            print(er[0],er[1])
+            print(er[0], er[1])
         sys.exit(2)
     print("Lexeme seperation successful.")
-    print(lexeme_list)
+    # print(lexeme_list)
     lexeme_list = addTokenVal(lexeme_list)
+    # lexeme_list = colouring_list(lexeme_list)
     return lexeme_list
 
 

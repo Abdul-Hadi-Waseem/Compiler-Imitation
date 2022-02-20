@@ -8,10 +8,9 @@ def is_identifier(s):
     # s[0] should be in a-z or A-Z
     # s[1:] should be a-z or A-Z or 0-9 or _ (underscore)
 
-
     flag = False
     if s[0].lower().isalpha():
-        if len(s)==1:
+        if len(s) == 1:
             flag = True
             return flag
         for char in s[1:]:
@@ -53,7 +52,7 @@ def is_integer_literal(i):
         if len(i) == 1:
             return True
     elif i[0].isdigit():
-        if len(i)==1:
+        if len(i) == 1:
             flag = True
         elif all([a.isdigit() for a in i[1:]]):
             flag = True
@@ -121,7 +120,7 @@ def is_string_literal(s):
     """
     flag = True
 
-    if s[0] == '\"' and s[-1] == '\"':
+    if s[0] == '"' and s[-1] == '"':
         # check inside
         for index, char in enumerate(s[1:-1]):
             if char == "\\":
@@ -146,7 +145,7 @@ def is_string_literal(s):
 # print(is_string_literal('" "'))
 # print(is_string_literal('" "'))
 
-#No need for Operator or Delimeter
+# No need for Operator or Delimeter
 
 # Syntax Specifications Remaining
 
@@ -156,12 +155,14 @@ def is_string_literal(s):
 # boolean
 # All the keywords
 
+
 def is_valid_token(token):
     valid = False
-    if (is_identifier(token) 
-    or is_string_literal(token) 
-    or is_float_literal(token) 
-    or is_integer_literal(token)
+    if (
+        is_identifier(token)
+        or is_string_literal(token)
+        or is_float_literal(token)
+        or is_integer_literal(token)
     ):
         valid = True
     return valid

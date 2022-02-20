@@ -71,6 +71,4 @@ keywords_map = {
     "------": 60,
 }
 
-identifier_list = {
-    
-}
+identifier_list = {}

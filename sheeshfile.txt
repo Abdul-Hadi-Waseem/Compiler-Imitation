@@ -6,7 +6,10 @@ a = b
 
 232c = d + e
 "Hello Dr. Jainnigga_color"
-a = 1.1
+a = 1.1.1
+d = 1.1
+f = 1.123a
+
 if (nigga_color=="White")
 {
     nigga_category = "Wigga" 

@@ -119,9 +119,9 @@ def is_string_literal(s):
     start and end character should be a double quote (")
     no newlines, carriage returns, or backslashes allowed
     """
-    flag = False
+    flag = True
 
-    if s[0] == '"' and s[-1] == '"':
+    if s[0] == '\"' and s[-1] == '\"':
         # check inside
         for index, char in enumerate(s[1:-1]):
             if char == "\\":
@@ -136,15 +136,15 @@ def is_string_literal(s):
     return flag
 
 
-print(is_string_literal('"sheesh"'))
-print(is_string_literal('" "'))
-print(is_string_literal('" "'))
-print(is_string_literal('" "'))
-print(is_string_literal('" "'))
-print(is_string_literal('" "'))
-print(is_string_literal('" "'))
-print(is_string_literal('" "'))
-print(is_string_literal('" "'))
+# print(is_string_literal('"sheesh"'))
+# print(is_string_literal('" "'))
+# print(is_string_literal('" "'))
+# print(is_string_literal('" "'))
+# print(is_string_literal('" "'))
+# print(is_string_literal('" "'))
+# print(is_string_literal('" "'))
+# print(is_string_literal('" "'))
+# print(is_string_literal('" "'))
 
 #No need for Operator or Delimeter
 
@@ -160,7 +160,7 @@ def is_valid_token(token):
     valid = False
     if (is_identifier(token) 
     or is_string_literal(token) 
-    # or is_float_literal(token) 
+    or is_float_literal(token) 
     or is_integer_literal(token)
     ):
         valid = True

@@ -1,27 +1,33 @@
 from hash_maps import keywords_map, identifier_list, operator_list, delimiter_list
-from tokenizer_utils import is_valid_token
+from tokenizer_utils import is_valid_token, is_string_literal, is_integer_literal, is_float_literal
 
-
+total_keywords = len(operator_list)+ len(delimiter_list)+ len(keywords_map)
 def token_info(token):
     """
     NOTE: the token needs to be a valid token
     args: token [string]
     """
     try:
-        if keywords_map[token]==60:
-            return keywords_map[token],"new line"
+        token_value = keywords_map[token]
+        if token=="------":
+            return token_value,"new line"
         # if the token is available in the tokenmap then return its value
-        return keywords_map[token], "keyword"
+        return token_value, "keyword"
     except:
         # if the token is not available in the token map,
         # add it to the token map and append to the tokenmap and return it
         identifier_list[token] = (
-            len(operator_list)
-            + len(delimiter_list)
-            + len(keywords_map)
+            total_keywords
             + len(identifier_list)
             + 1
         )
+        if is_string_literal(token):
+            return identifier_list[token], "string_lit"
+        if is_float_literal(token):
+            return identifier_list[token], "float_lit"
+        if is_integer_literal(token):
+            return identifier_list[token], "integer_lit"
+
         return identifier_list[token], "identifier"
 
 
@@ -61,14 +67,13 @@ def addTokenVal(lexeme_list):
             temp_lexeme_list.append([linenum, lexeme, delimeter_value, "delimeter"])
             continue
         if not (delimeter_value or operator_value):
-            token_value, token_category = token_info(lexeme)
-            # print(f"Op Val : {operator_value}, del val: {delimeter_value}, token val: {token_value}, token category:{token_category}")
-            # if (
-            #     # not is_valid_token(lexeme) and 
-            #     token_category!="new line"):
-            #     temp_lexeme_list.append([linenum, lexeme, "err", "invalid"])
-            #     continue
-            temp_lexeme_list.append([linenum, lexeme, token_value, token_category])
+            if is_valid_token(lexeme) or lexeme=="------":
+                token_value, token_category = token_info(lexeme)
+                # print(f"Op Val : {operator_value}, del val: {delimeter_value}, token val: {token_value}, token category:{token_category}")
+                temp_lexeme_list.append([linenum, lexeme, token_value, token_category])
+                continue
+            else:
+                temp_lexeme_list.append([linenum, lexeme, "err", "invalid"])                
     return temp_lexeme_list
 
 

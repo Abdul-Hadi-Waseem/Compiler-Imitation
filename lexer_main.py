@@ -4,6 +4,7 @@ import time
 from matplotlib.pyplot import table
 from terminaltables import AsciiTable
 from colorclass import Color, Windows
+
 Windows.enable()
 
 from utils.openfile import openSheeshfile, getFileSize

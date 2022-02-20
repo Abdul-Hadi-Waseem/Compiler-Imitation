@@ -61,6 +61,10 @@ def delimeter_val(token):
 
 
 def addTokenVal(lexeme_list):
+    """
+    args: lexeme_list [list] list of the tokens
+    returns temp_lexeme_list [list] list with updated token number and category
+    """
     temp_lexeme_list = []
     for linenum, lexeme in lexeme_list:
         operator_value = operator_val(lexeme)

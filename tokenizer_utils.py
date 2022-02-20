@@ -8,8 +8,12 @@ def is_identifier(s):
     # s[0] should be in a-z or A-Z
     # s[1:] should be a-z or A-Z or 0-9 or _ (underscore)
 
+
     flag = False
     if s[0].lower().isalpha():
+        if len(s)==1:
+            flag = True
+            return flag
         for char in s[1:]:
             if char.isdigit() or char.lower().isalpha() or char == "_":
                 flag = True
@@ -49,15 +53,17 @@ def is_integer_literal(i):
         if len(i) == 1:
             return True
     elif i[0].isdigit():
-        if all([a.isdigit() for a in i[1:]]):
+        if len(i)==1:
+            flag = True
+        elif all([a.isdigit() for a in i[1:]]):
             flag = True
         else:
             return False
-    elif i[0] in "+-":
-        if i[1] != "0" and all([a.isdigit() for a in i[2:]]):
-            flag = True
-        else:
-            return False
+    # elif i[0] in "+-":
+    #     if i[1] != "0" and all([a.isdigit() for a in i[2:]]):
+    #         flag = True
+    #     else:
+    #         return False
     else:
         return False
 
@@ -140,18 +146,7 @@ print(is_string_literal('" "'))
 print(is_string_literal('" "'))
 print(is_string_literal('" "'))
 
-
-def is_operator(o, operator_list):
-
-    """ """
-
-    return o in operator_list
-
-
-def is_delimiter(d, delimeter_list):
-    """ """
-    return d in delimeter_list
-
+#No need for Operator or Delimeter
 
 # Syntax Specifications Remaining
 
@@ -160,3 +155,13 @@ def is_delimiter(d, delimeter_list):
 # if else
 # boolean
 # All the keywords
+
+def is_valid_token(token):
+    valid = False
+    if (is_identifier(token) 
+    or is_string_literal(token) 
+    # or is_float_literal(token) 
+    or is_integer_literal(token)
+    ):
+        valid = True
+    return valid

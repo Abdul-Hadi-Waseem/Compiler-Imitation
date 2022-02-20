@@ -1,4 +1,5 @@
 from hash_maps import keywords_map, identifier_list, operator_list, delimiter_list
+from tokenizer_utils import is_valid_token
 
 
 def token_info(token):
@@ -7,6 +8,8 @@ def token_info(token):
     args: token [string]
     """
     try:
+        if keywords_map[token]==60:
+            return keywords_map[token],"new line"
         # if the token is available in the tokenmap then return its value
         return keywords_map[token], "keyword"
     except:
@@ -17,6 +20,7 @@ def token_info(token):
             + len(delimiter_list)
             + len(keywords_map)
             + len(identifier_list)
+            + 1
         )
         return identifier_list[token], "identifier"
 
@@ -52,18 +56,23 @@ def addTokenVal(lexeme_list):
         delimeter_value = delimeter_val(lexeme)
         if operator_value:
             temp_lexeme_list.append([linenum, lexeme, operator_value, "operator"])
+            continue
         elif delimeter_value:
             temp_lexeme_list.append([linenum, lexeme, delimeter_value, "delimeter"])
+            continue
         if not (delimeter_value or operator_value):
             token_value, token_category = token_info(lexeme)
-            if lexeme == "------":
-                token_category = "new line"
             # print(f"Op Val : {operator_value}, del val: {delimeter_value}, token val: {token_value}, token category:{token_category}")
+            # if (
+            #     # not is_valid_token(lexeme) and 
+            #     token_category!="new line"):
+            #     temp_lexeme_list.append([linenum, lexeme, "err", "invalid"])
+            #     continue
             temp_lexeme_list.append([linenum, lexeme, token_value, token_category])
     return temp_lexeme_list
 
 
 # print("{")
-# for num,i in enumerate(keywords_map,24):
+# for num,i in enumerate(identifier_list,60):
 #     print(f"\"{i}\":{num},")
 # print("}")

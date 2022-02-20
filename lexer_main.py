@@ -17,17 +17,18 @@ def lexicar(file_path="sheeshfile.txt"):
 
     f = openSheeshfile(file_path)
 
-    line_count = 1
+    line_count = 0
     file_size = getFileSize(file_path)
     f.seek(0)
     lexeme_list = []
     lexeme_buffer = ""
     cnt = 0
+    errors = []
     quote_flag = False
     cumment_flag = False
     while True:
         cnt += 1
-        # time.sleep(0.001)
+        time.sleep(0.001)
 
         print("\rProgress : {0}%".format(round(cnt * 100 / file_size, 2)), end="\r")
 
@@ -55,11 +56,24 @@ def lexicar(file_path="sheeshfile.txt"):
             f.readline()
             line_count += 1
             continue
+        
+        #Errors support
+        if curr_char=="\n" and quote_flag:
+            errors.append(["Error parsing at line",line_count])
+            quote_flag = False
+            # print("Error parsing at line",line_count)
+            # sys.exit(2)
+            continue
+
+        if curr_char == ".":
+                if lexeme_buffer[0].isdigit():
+                    lexeme_buffer += "."
+                    continue
 
         if not (
             curr_char.isdigit()
             or curr_char.lower().isalpha()
-            or curr_char in "_"
+            or curr_char in "._"
             or quote_flag
         ):  # Delimiter check
             if not lexeme_buffer == "":  # Prevent empty symbols
@@ -94,9 +108,15 @@ def lexicar(file_path="sheeshfile.txt"):
 
     if not lexeme_buffer == "":  # append if anything still left in the lexeme_buffer
         lexeme_list.append([line_count, lexeme_buffer])
+
+    #Print Error        
+    if errors:
+        for er in errors:
+            print(er[0],er[1])
+        sys.exit(2)
     print("Lexeme seperation successful.")
+    print(lexeme_list)
     lexeme_list = addTokenVal(lexeme_list)
-    # print(lexeme_list)
     return lexeme_list
 
 

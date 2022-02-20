@@ -1,16 +1,18 @@
 
 
 from
-c = 12
+c = -12
 a = b
 
-c = d + e
-Hello Dr. Jain
+232c = d + e
+"Hello Dr. Jainnigga_color"
+a = 1.1
 if (nigga_color=="White")
 {
     nigga_category = "Wigga" 
     nimba=jimba
 }
+#
 #else
 #{
 #    if(a>=b)

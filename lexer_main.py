@@ -105,9 +105,13 @@ if __name__ == "__main__":
 
     # filename = sys.argv[1] #Takes filename from the terminal
 
-    filename = "sheeshfile.txt" #uncomment this and give filename here if not from terminal
+    filename = (
+        "sheeshfile.txt"  # uncomment this and give filename here if not from terminal
+    )
 
     lexeme_list = lexicar(filename)
-    lexeme_list = [["Token line", "Token", "Token value","Token Category"]] + lexeme_list
+    lexeme_list = [
+        ["Token line", "Token", "Token value", "Token Category"]
+    ] + lexeme_list
     lexeme_list_table = AsciiTable(lexeme_list)
     print(lexeme_list_table.table)

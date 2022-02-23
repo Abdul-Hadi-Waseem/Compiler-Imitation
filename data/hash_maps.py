@@ -40,12 +40,12 @@ keywords_map = {
     "False": 29,
     "None": 30,
     "True": 31,
-    "and": 32,
+    "and": 32,          #Equivalent to &&
     "as": 33,
     "assert": 34,
     "async": 35,
     "await": 36,
-    "break": 37,
+    "yeet": 37,         #Equivalent to break
     "class": 38,
     "continue": 39,
     "def": 40,
@@ -64,21 +64,22 @@ keywords_map = {
     "lambda": 53,
     "nonlocal": 54,
     "not": 55,
-    "or": 56,
+    "or": 56,          #Equivalent to ||
     "pass": 57,
     "raise": 58,
     "return": 59,
     "shout": 60,
     "try": 61,
-    "while": 62,
-    "with": 63,
+    "loop": 62,        #Equivalent to while
+    "using": 63,       #Equivalent to with
     "yield": 64,
     "int": 65,
     "float": 66,
     "boolean": 67,
     "string": 68,
     "until": 69,
-    "------": 70,
+    "------": 70,     #Equivalent to newline
+    "sheesh": 71      #Equivalent to exit
 }
 
 identifier_list = defaultdict(lambda: "NULL")

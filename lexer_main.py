@@ -120,7 +120,7 @@ def lexicar(file_path="sheeshfile.txt"):
     print("Lexeme seperation successful.")
     # print(lexeme_list)
     lexeme_list = addTokenVal(lexeme_list)
-    # lexeme_list = colouring_list(lexeme_list)
+    print(lexeme_list)
     return lexeme_list
 
 

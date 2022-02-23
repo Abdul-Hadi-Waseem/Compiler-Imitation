@@ -1,4 +1,5 @@
 from data.hash_maps import keywords_map, identifier_list, operator_list, delimiter_list
+from collections import defaultdict
 from utils.tokenizer_utils import (
     is_valid_token,
     is_string_literal,
@@ -25,13 +26,14 @@ def token_info(token):
     except:
         # if the token is not available in the token map,
         # add it to the token map and append to the tokenmap and return it
-        identifier_list[token] = total_keywords + len(identifier_list) + 1
-        if is_string_literal(token):
-            return identifier_list[token], "string_lit"
-        if is_float_literal(token):
-            return identifier_list[token], "float_lit"
-        if is_integer_literal(token):
-            return identifier_list[token], "integer_lit"
+        if identifier_list[token]=="NULL":     
+            identifier_list[token] = total_keywords + len(identifier_list)
+            if is_string_literal(token):
+                return identifier_list[token], "string_lit"
+            if is_float_literal(token):
+                return identifier_list[token], "float_lit"
+            if is_integer_literal(token):
+                return identifier_list[token], "integer_lit"
 
         return identifier_list[token], "identifier"
 
@@ -83,7 +85,7 @@ def addTokenVal(lexeme_list):
                 # print(f"Op Val : {operator_value}, del val: {delimeter_value}, token val: {token_value}, token category:{token_category}")
                 temp_lexeme_list.append([linenum, lexeme, token_value, token_category])
                 continue
-            else:
+            else:       #invalid token is added as err and invalid with red colour
                 temp_lexeme_list.append(
                     [
                         linenum,

@@ -1,6 +1,6 @@
 # all the operators,delimeters and keyword are till token number 58
 # after 58 the new tokens will be issued and appended in the map
-
+from collections import defaultdict
 
 operator_list = {
     "+": 1,
@@ -71,4 +71,4 @@ keywords_map = {
     "------": 60,
 }
 
-identifier_list = {}
+identifier_list = defaultdict(lambda:"NULL")

@@ -56,7 +56,7 @@ It will print a table of the tokens.
 
 ## Example:
 
-#####Example file:
+##### Example file:
 ```
 int fun( int n) { 
 if (n <= 1) {
@@ -79,11 +79,11 @@ x = x + 1
 }
 } 
 ```
-#####Command to test the file:
+##### Command to test the file:
 ```shell
 $ python3 lexer_main.py Testcases/fact.sheesh
 ```
-#####Output:
+##### Output:
 Lexeme seperation successful.
 | Token line | Token  | Token value | Token Category |
 |------------|:-------:|:-------------:|----------------|

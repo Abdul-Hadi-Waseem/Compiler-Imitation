@@ -1,0 +1,19 @@
+int fun( int n) { 
+if (n <= 1) {
+return 1
+} 
+return n*fact(n-1)
+}
+
+void main(void) { 
+int x 
+x = +1.3 
+t:=1
+while (x <= 10) { 
+#"This is multiline string which will print error
+#in the file once uncommented." 
+shout(x)
+shout(fact(x))
+x = x + 1 
+}
+} 

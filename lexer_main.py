@@ -20,7 +20,7 @@ def lexicar(file_path="sheeshfile.txt"):
 
     f = openSheeshfile(file_path)
 
-    line_count = 0
+    line_count = 1
     file_size = getFileSize(file_path)
     f.seek(0)
     lexeme_list = []
@@ -83,7 +83,7 @@ def lexicar(file_path="sheeshfile.txt"):
                 lexeme_list.append(
                     [line_count, lexeme_buffer]
                 )  # Appends whatever is in the buffer
-            if curr_char in "<>!=":  # Support for <= != == >=
+            if curr_char in "<>!:=":  # Support for <= != == >=
                 temp = f.tell()
                 if f.read(1) == "=":
                     lexeme_buffer = curr_char + "="
@@ -120,18 +120,18 @@ def lexicar(file_path="sheeshfile.txt"):
     print("Lexeme seperation successful.")
     # print(lexeme_list)
     lexeme_list = addTokenVal(lexeme_list)
-    print(lexeme_list)
+    # print(lexeme_list)
     return lexeme_list
 
 
 if __name__ == "__main__":
     # get filename from the arguments in the terminal
 
-    # filename = sys.argv[1] #Takes filename from the terminal
+    filename = sys.argv[1]  # Takes filename from the terminal
 
-    filename = (
-        "sheeshfile.txt"  # uncomment this and give filename here if not from terminal
-    )
+    # filename = (
+    #     "sheeshfile.txt"  # uncomment this and give filename here if not from terminal
+    # )
 
     lexeme_list = lexicar(filename)
     lexeme_list = [

@@ -31,7 +31,7 @@ def lexicar(file_path="sheeshfile.txt"):
     cumment_flag = False
     while True:
         cnt += 1
-        time.sleep(0.001)
+        # time.sleep(0.001)
 
         print("\rProgress : {0}%".format(round(cnt * 100 / file_size, 2)), end="\r")
 

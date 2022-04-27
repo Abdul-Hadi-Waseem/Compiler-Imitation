@@ -31,7 +31,7 @@ def lexicar(file_path="sheeshfile.txt"):
     cumment_flag = False
     while True:
         cnt += 1
-        time.sleep(0.001)
+        # time.sleep(0.001)   #Just so it looks cool
 
         print("\rProgress : {0}%".format(round(cnt * 100 / file_size, 2)), end="\r")
 
@@ -124,14 +124,14 @@ def lexicar(file_path="sheeshfile.txt"):
     return lexeme_list
 
 
-if __name__ == "__main__":
+def lexermain():
     # get filename from the arguments in the terminal
 
-    filename = sys.argv[1]  # Takes filename from the terminal
+    # filename = sys.argv[1]  # Takes filename from the terminal
 
-    # filename = (
-    #     "sheeshfile.txt"  # uncomment this and give filename here if not from terminal
-    # )
+    filename = (
+        "Testcases/fact.sheesh"  # uncomment this and give filename here if not from terminal
+    )
 
     lexeme_list = lexicar(filename)
     lexeme_list = [
@@ -139,3 +139,4 @@ if __name__ == "__main__":
     ] + lexeme_list
     lexeme_list_table = AsciiTable(lexeme_list)
     print(lexeme_list_table.table)
+    return lexeme_list

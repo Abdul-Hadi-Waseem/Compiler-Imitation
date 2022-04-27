@@ -98,7 +98,7 @@ def lexicar(file_path="sheeshfile.txt"):
                 continue
 
             if curr_char == "\n":  # new line check
-                lexeme_list.append([line_count, "------"])
+                lexeme_list.append([line_count, "NL"])
                 lexeme_buffer = ""
                 continue
 
@@ -138,5 +138,6 @@ def lexermain():
         ["Token line", "Token", "Token value", "Token Category"]
     ] + lexeme_list
     lexeme_list_table = AsciiTable(lexeme_list)
-    print(lexeme_list_table.table)
+    # PRINT TABLES:=>
+    # print(lexeme_list_table.table)
     return lexeme_list

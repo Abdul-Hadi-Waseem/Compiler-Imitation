@@ -77,7 +77,7 @@ keywords_map = {
     "boolean": 67,
     "string": 68,
     "until": 69,
-    "------": 70,     #Equivalent to newline
+    "NL": 70,     #Equivalent to newline
     "sheesh": 71      #Equivalent to exit
 }
 

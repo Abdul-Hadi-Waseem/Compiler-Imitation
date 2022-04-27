@@ -23,7 +23,7 @@ def token_info(token):
     """
     try:
         token_value = keywords_map[token]
-        if token == "------":
+        if token == "NL":
             return token_value, "new line"
         # if the token is available in the tokenmap then return its value
         return token_value, "keyword"

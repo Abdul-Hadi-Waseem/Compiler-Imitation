@@ -1,16 +1,7 @@
-def hula(): int {
-    int x = 5
-}
-
 def main() : void {
+    5
     int a = 4
-    #loop(x) {
-    #    int x = 1
-    #}
-    #if ( (x>2)){
-    #    x= (x+2)
-    #}
-    #yo hula()
+    yo hula()
     return 0
-    
+    5
 }

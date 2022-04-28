@@ -16,6 +16,7 @@ class Logger(object):
                 self.file = open(fpath, "a")
             else:
                 self.file = open(fpath, "w")
+                self.file.truncate()
         else:
             self.file = open(fpath, "w")
 

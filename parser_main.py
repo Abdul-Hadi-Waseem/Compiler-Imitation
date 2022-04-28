@@ -2,8 +2,10 @@ import lexer_main
 from utils.openfile import extract_table, extract_cfg
 from utils.logger import Logger
 
-logger = Logger("./Logs/stack_logger.log")
-iptokens = Logger("./Logs/iptokens.log")
+stack_logger = Logger("./Logs/stack_logger.log")
+#iptokens = Logger("./Logs/#iptokens.log")
+err_logger = Logger("./Logs/err_logger.log")
+
 TABLE_LOC = "Grammer/parser_LALR1_table.tsv"
 CFG_LOC = "Grammer/Sheesh_CFG.txt"
 
@@ -24,24 +26,21 @@ def token_list_generator(lexeme_list):
     token_list = []
     for lexeme in lexeme_list:
         col = lexeme[1]
+        tok = col
         # Gotta replace variables with their token types
         if lexeme[3] == "identifier":
             col_attr = col
-            token_list.append("ID")
-            continue
+            tok = "ID"
         if lexeme[3] == "string_lit":
             col_attr = col
-            token_list.append("STRING_LITERAL")
-            continue
+            tok = "STRING_LITERAL"
         if lexeme[3] == "float_lit":
             col_attr = col
-            token_list.append("FLOAT_LITERAL")
-            continue
+            tok = "FLOAT_LITERAL"
         if lexeme[3] == "integer_lit":
             col_attr = col
-            token_list.append("INTEGER_LITERAL")
-            continue
-        token_list.append(lexeme[1])
+            tok = "INTEGER_LITERAL"
+        token_list.append((tok, lexeme[0]))
     token_list.pop(0)
     return token_list
 
@@ -49,7 +48,7 @@ def token_list_generator(lexeme_list):
 def print_tokens(token_list):
     print("TOKENS:", end=" ")
     for token in token_list:
-        print(token, end=" ")
+        print(token[0], end=" ")
     print()
 
 
@@ -60,7 +59,7 @@ def top_down_parser(lexeme_list):
     """
     # Extracting tokens from lexeme list
     token_list = token_list_generator(lexeme_list)
-    token_list.append("$")
+    token_list.append(("$", None))
     # print(f"TOKENS: {token_list}")
     print_tokens(token_list)
 
@@ -72,31 +71,46 @@ def top_down_parser(lexeme_list):
     stack = []
     stack.append("0")
 
-    logger.append(stack[::-1])
-    iptokens.append(token_list)
+    stack_logger.append(stack[::-1])
+    #iptokens.append(token_list)
 
     accept_flag = False
-    # isError = False
-
+    isError = False
+    curr_lexeme = None
+    prev_token1 = None
+    prev_token2 = None
+    curr_row = None
+    prev_row1 = None
+    prev_row2 = None
+    errcnt=0
     while not accept_flag:
 
         print("\n")
         if top(stack).isdigit():
             row = top(stack)
-            # if isError:
-            #     curr_lexeme = token_list.pop(0)
-            #     # print(curr_lexeme)
-            #     isError = False
+            if isError:
+                curr_lexeme = token_list[0][0]
+                curr_row = token_list[0][1]
+                # print(curr_lexeme)
+                isError = False
+                continue
             # else:
-            curr_lexeme = token_list[0]
+            # if prev_token == curr_lexeme:
+            curr_lexeme = token_list[0][0]
+            curr_row = token_list[0][1]
+            if prev_token1 != curr_lexeme:
+                prev_token2 = prev_token1
+                prev_row2 = prev_row1
+            prev_token1 = curr_lexeme
+            prev_row1 = curr_row
             col = curr_lexeme
         else:
             row = top(stack, 2)
             col = top(stack)
             print(f"row col after reduce case: ({row},{col})")
             stack.append(parse_table[int(row)][col])
-            logger.append(stack[::-1])
-            iptokens.append(token_list)
+            stack_logger.append(stack[::-1])
+            #iptokens.append(token_list)
 
 
             continue
@@ -105,15 +119,19 @@ def top_down_parser(lexeme_list):
         # temp = parse_table[13]['ARRAY']
         temp = parse_table[int(row)][col]
         if not temp.strip():
+            errcnt+=1
             print("Error Handling Panic Mode :=>")
+            isError = True
             stack.pop()
             stack.pop()
+            token_list.pop(0)
             
-            logger.append(stack[::-1])
-            iptokens.append(token_list)
-
+            # curr_lexeme = token_list[1]
             
-            # isError = True
+            stack_logger.append(stack[::-1])
+            #iptokens.append(token_list)
+            err_logger.append(f"Error {errcnt}: {prev_token2} , Line : {prev_row2-1}")
+            
             
             continue
 
@@ -135,13 +153,13 @@ def top_down_parser(lexeme_list):
                 exit()
             print("Shift")
             action_num = int(action_num)
-            curr_token = token_list.pop(0)
+            curr_token = token_list.pop(0)[0]
             stack.append(curr_token)
             str_action_num = str(action_num)
             stack.append(str_action_num)
             
-            logger.append(stack[::-1])
-            iptokens.append(token_list)
+            stack_logger.append(stack[::-1])
+            #iptokens.append(token_list)
 
             continue
 
@@ -159,8 +177,8 @@ def top_down_parser(lexeme_list):
                 stack.pop()
 
             stack.append(cfg[action_num].split("->")[0].strip())
-            logger.append(stack[::-1])
-            iptokens.append(token_list)
+            stack_logger.append(stack[::-1])
+            #iptokens.append(token_list)
 
             print(stack)
             continue

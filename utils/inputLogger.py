@@ -30,12 +30,12 @@ class InputLogger(object):
             except:
                 traceback.print_exc()
             else:
-                print(inp_str)
+                # print(inp_str)
 
                 self.file.write(inp_str + "\n")
                 self.file.flush()
         else:
-            print(inp_str)
+            # print(inp_str)
             self.file.write(inp_str + "\n")
             self.file.flush()
 

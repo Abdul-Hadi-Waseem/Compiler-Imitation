@@ -30,12 +30,12 @@ class Logger(object):
             except:
                 traceback.print_exc()
             else:
-                print(stack_str)
+                # print(stack_str)
 
                 self.file.write(stack_str + "\n")
                 self.file.flush()
         else:
-            print(stack_str)
+            # print(stack_str)
             self.file.write(stack_str + "\n")
             self.file.flush()
 

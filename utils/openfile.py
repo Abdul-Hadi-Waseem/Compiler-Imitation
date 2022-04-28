@@ -76,9 +76,9 @@ def extract_table(filename):
         # print(f"while index: {while_idx}")
         # headers[while_idx + 1] = ""
 
-        print(headers)
-        print(data.shape)
-        print(headers.shape)
+        # print(headers)
+        # print(data.shape)
+        # print(headers.shape)
         new_data = []
         for row in data:
             new_data.append({headers[i]: row[i] for i in range(len(headers))})

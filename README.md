@@ -38,7 +38,7 @@ It will print a table of the tokens.
 - Sheesh's CFG and corresponding parse table have also been defined in the Grammer folder as `Sheesh_CFG.txt` and `parse_LALR1_table.tsv`
 - The `utils` folder provides with all the utility functions required for the lexer and parser.
 
-##ADDITIONAL INFORMATION
+## ADDITIONAL INFORMATION
 - Logs for stack, error and input string are stored in the `Logs` folder. Logs are captured in each iteration of the parsing process.
 - Testcases are provided in the `Testcases` folder. To run each of the testcases run the command:
   ```shell
@@ -98,7 +98,7 @@ Lexeme seperation successful.
 | 5          | }      | 20          | delimeter      |
 
 
-###Parser phase
+### Parser phase
   - Parses
   - Uses a custom CFG called Sheesh_CFG.
   - Parse table created using LALR(1) parsing technique.

@@ -92,11 +92,8 @@ def elserelt(stmnts, line_number):
         print(key, value)
    print('\n') 
 
-def intermediate_code_generator():
-    try:
-        filename = sys.argv[1]  # Takes filename from the terminal
-    except:
-        filename = "default.sheesh"  # uncomment this and give filename here if not from terminal
+def intermediate_code_generator(filename):
+
     f = openSheeshfile(filename)
     lines = f.read().splitlines()
     # print('The Testcase is :\n')

@@ -31,10 +31,15 @@ The following command will run the `lexer_main.py` file.
 It will print a table of the tokens.
 
 
-## SPECS
+## IMPLEMENTATION DETAILS
+- The lexer and parser are written in Python 3.6.
 - Each file and funtion in the code is properly documented and commented about its input  arguments, return values and the functionality
-- All the keywords, operators and delimeters are defined in the `data.hash_maps.py` file
-- The `utils` folder provides with all the utility functions required for the lexer.
+- All the keywords, operators and delimeters are defined in the Grammer folder in the `hash_maps.py` file.
+- Sheesh's CFG and corresponding parse table have also been defined in the Grammer folder as `Sheesh_CFG.txt` and `parse_LALR1_table.tsv`
+- The `utils` folder provides with all the utility functions required for the lexer and parser.
+
+##ADDITIONAL INFORMATION
+- Logs for stack, error and input string are stored in the `Logs` folder. Logs are captured in each iteration of the parsing process.
 - Testcases are provided in the `Testcases` folder. To run each of the testcases run the command:
   ```shell
   $ python3 parser_main.py Testcases/<filename>

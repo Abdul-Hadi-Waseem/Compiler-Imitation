@@ -1,6 +1,6 @@
 def main() : void {
     5
-    int a = 4
+    int a = 4c
     yo hula()
     return 0
     5

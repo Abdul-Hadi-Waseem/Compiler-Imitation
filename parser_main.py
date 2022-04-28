@@ -113,8 +113,6 @@ def top_down_parser(lexeme_list):
             stack.append(parse_table[int(row)][col])
             stack_logger.append(stack[::-1])
             iptokens.append(token_list)
-
-
             continue
         
         print(f"Parse Table[{row}]['{col}'] entry: {parse_table[int(row)][col]}")
@@ -172,7 +170,7 @@ def top_down_parser(lexeme_list):
             numpopper = len(cfg[action_num].split("->")[1].strip().split(" "))
             if cfg[action_num].split("->")[1].strip() == "''":
                 numpopper = 0
-            print("numpopper : ", numpopper)
+            # print("numpopper : ", numpopper)
             print("Reducing by production rule : ", cfg[action_num])
             for i in range(numpopper):
                 stack.pop()
@@ -182,7 +180,7 @@ def top_down_parser(lexeme_list):
             stack_logger.append(stack[::-1])
             iptokens.append(token_list)
 
-            print(stack)
+            # print(stack)
             continue
 
 
@@ -191,10 +189,19 @@ if __name__ == "__main__":
     try:
         filename = sys.argv[1]  # Takes filename from the terminal
     except:
-        filename = "./default.sheesh"  # uncomment this and give filename here if not from terminal
+        filename = "./default.sheesh"  # filename here if not from terminal
 
     lexeme_list = lexer_main.lexermain(filename)
+    errtok = False
+    for a,b,c,inv in lexeme_list:
+        if inv=="invalid":
+            errtok = True
+    if not errtok:
+        print("Invalid token exists in the program. Unable to parse!")
+        print("\n\n","-"*60,"DONE","-"*60)
+        sys.exit(4)
+
     # lexeme_list = []
     top_down_parser(lexeme_list)
-    intermediate_code_generator()
+    intermediate_code_generator(filename)
     print("\n\n","-"*60,"DONE","-"*60)

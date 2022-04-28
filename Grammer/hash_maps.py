@@ -81,6 +81,7 @@ keywords_map = {
     "sheesh": 69,  # Equivalent to exit
     "main": 70,
     "void": 71,
+    "yo": 72
 }
 
 identifier_list = defaultdict(lambda: "NULL")

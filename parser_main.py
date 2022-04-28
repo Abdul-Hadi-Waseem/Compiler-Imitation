@@ -3,6 +3,7 @@ from utils.openfile import extract_table, extract_cfg
 from utils.logger import Logger
 
 logger = Logger("./Logs/stack_logger.log")
+iptokens = Logger("./Logs/iptokens.log")
 TABLE_LOC = "Grammer/parser_LALR1_table.tsv"
 CFG_LOC = "Grammer/Sheesh_CFG.txt"
 
@@ -72,19 +73,22 @@ def top_down_parser(lexeme_list):
     stack.append("0")
 
     logger.append(stack[::-1])
+    iptokens.append(token_list)
+
     accept_flag = False
-    isError = False
+    # isError = False
 
     while not accept_flag:
+
         print("\n")
         if top(stack).isdigit():
             row = top(stack)
-            if isError:
-                curr_lexeme = token_list[1]
-                print(curr_lexeme)
-                isError = False
-            else:
-                curr_lexeme = token_list[0]
+            # if isError:
+            #     curr_lexeme = token_list.pop(0)
+            #     # print(curr_lexeme)
+            #     isError = False
+            # else:
+            curr_lexeme = token_list[0]
             col = curr_lexeme
         else:
             row = top(stack, 2)
@@ -92,6 +96,8 @@ def top_down_parser(lexeme_list):
             print(f"row col after reduce case: ({row},{col})")
             stack.append(parse_table[int(row)][col])
             logger.append(stack[::-1])
+            iptokens.append(token_list)
+
 
             continue
         
@@ -99,10 +105,16 @@ def top_down_parser(lexeme_list):
         # temp = parse_table[13]['ARRAY']
         temp = parse_table[int(row)][col]
         if not temp.strip():
-            isError = True
-            print("Eror Handling Panic Mode :=>")
+            print("Error Handling Panic Mode :=>")
             stack.pop()
             stack.pop()
+            
+            logger.append(stack[::-1])
+            iptokens.append(token_list)
+
+            
+            # isError = True
+            
             continue
 
 
@@ -127,7 +139,9 @@ def top_down_parser(lexeme_list):
             stack.append(curr_token)
             str_action_num = str(action_num)
             stack.append(str_action_num)
+            
             logger.append(stack[::-1])
+            iptokens.append(token_list)
 
             continue
 
@@ -146,6 +160,8 @@ def top_down_parser(lexeme_list):
 
             stack.append(cfg[action_num].split("->")[0].strip())
             logger.append(stack[::-1])
+            iptokens.append(token_list)
+
             print(stack)
             continue
 

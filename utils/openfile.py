@@ -70,9 +70,9 @@ def extract_table(filename):
         # print("chud gaya humara code")
 
         # Find index of 'loop' column
-        while_idx = np.where(headers == "loop")[0][0]
-        print(f"while index: {while_idx}")
-        headers[while_idx + 1] = ""
+        # while_idx = np.where(headers == "loop")[0][0]
+        # print(f"while index: {while_idx}")
+        # headers[while_idx + 1] = ""
 
         print(headers)
         print(data.shape)

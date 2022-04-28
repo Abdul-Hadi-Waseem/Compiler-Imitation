@@ -5,6 +5,7 @@ from utils.logger import Logger
 from utils.inputLogger import InputLogger
 from SDT_SDD.intermediate_code_gen import intermediate_code_generator
 import time
+from colorclass import Color, Windows
 
 stack_logger = Logger("./Logs/stack_logger.log")
 err_logger = Logger("./Logs/err_logger.log")
@@ -203,8 +204,8 @@ if __name__ == "__main__":
     lexeme_list = lexer_main.lexermain(filename)
     errtok = False
     for a, b, c, inv in lexeme_list:
-        if str(inv) == "invalid":
-            print(inv)
+        if inv == Color("{red}invalid{/red}"):
+            # print(inv)
             errtok = True
 
     if errtok:

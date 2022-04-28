@@ -1,10 +1,11 @@
 import lexer_main
 from utils.openfile import extract_table, extract_cfg
 from utils.logger import Logger
+from utils.inputLogger import InputLogger
 
 stack_logger = Logger("./Logs/stack_logger.log")
-#iptokens = Logger("./Logs/#iptokens.log")
 err_logger = Logger("./Logs/err_logger.log")
+iptokens = InputLogger("./Logs/iptokens.log")
 
 TABLE_LOC = "Grammer/parser_LALR1_table.tsv"
 CFG_LOC = "Grammer/Sheesh_CFG.txt"
@@ -72,7 +73,7 @@ def top_down_parser(lexeme_list):
     stack.append("0")
 
     stack_logger.append(stack[::-1])
-    #iptokens.append(token_list)
+    iptokens.append(token_list)
 
     accept_flag = False
     isError = False
@@ -110,7 +111,7 @@ def top_down_parser(lexeme_list):
             print(f"row col after reduce case: ({row},{col})")
             stack.append(parse_table[int(row)][col])
             stack_logger.append(stack[::-1])
-            #iptokens.append(token_list)
+            iptokens.append(token_list)
 
 
             continue
@@ -129,7 +130,7 @@ def top_down_parser(lexeme_list):
             # curr_lexeme = token_list[1]
             
             stack_logger.append(stack[::-1])
-            #iptokens.append(token_list)
+            iptokens.append(token_list)
             err_logger.append(f"Error {errcnt}: {prev_token2} , Line : {prev_row2-1}")
             
             
@@ -159,7 +160,7 @@ def top_down_parser(lexeme_list):
             stack.append(str_action_num)
             
             stack_logger.append(stack[::-1])
-            #iptokens.append(token_list)
+            iptokens.append(token_list)
 
             continue
 
@@ -178,7 +179,7 @@ def top_down_parser(lexeme_list):
 
             stack.append(cfg[action_num].split("->")[0].strip())
             stack_logger.append(stack[::-1])
-            #iptokens.append(token_list)
+            iptokens.append(token_list)
 
             print(stack)
             continue

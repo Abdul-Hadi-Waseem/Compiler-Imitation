@@ -44,7 +44,7 @@ keywords_map = {
     "assert":32,
     "async":33,
     "await":34,
-    "yeet":35,
+    "yeet":35,          #Equivalent to break
     "class":36,
     "continue":37,
     "def":38,
@@ -69,19 +69,18 @@ keywords_map = {
     "return":57,
     "shout":58,
     "try":59,
-    "loop":60,
-    "using":61,
+    "loop":60,      #Equivalent to while
+    "using":61,     #Equivalent to with
     "yield":62,
     "int":63,
     "float":64,
     "boolean":65,
     "string":66,
-    "until":67,
-    "NL":68,
-    "sheesh":69,
+    "until":67, 
+    "NL":68,        #Equivalent to newline
+    "sheesh":69,    #Equivalent to exit
     "main":70,
     "void":71,
-    
 }
 
 identifier_list = defaultdict(lambda: "NULL")

@@ -41,7 +41,6 @@ def extract_table(filename):
     """
     try:
         data = pd.read_csv(filename, sep='\t')
-        #Delete column Unnamed:43
         #Print headers of the dataframe
         headers = data.columns.values
         headers = headers.flatten()[1:]
@@ -52,8 +51,10 @@ def extract_table(filename):
         # headers = np.delete(headers, 38)
         # data = np.delete(data, [38], axis=1)
 
-        #Find index of 'while' column
-        while_idx = np.where(headers == 'while')[0][0]
+        # print("chud gaya humara code")
+
+        #Find index of 'loop' column
+        while_idx = np.where(headers == 'loop')[0][0]
         print(f"while index: {while_idx}")
         headers[while_idx+1] = ''
 

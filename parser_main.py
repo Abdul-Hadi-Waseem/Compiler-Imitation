@@ -123,7 +123,7 @@ def top_down_parser(lexeme_list):
             action_num = int(action_num)
             # print(cfg[action_num].split("->")[1].strip().split(" "))
             numpopper = len(cfg[action_num].split("->")[1].strip().split(" "))      
-            if (not cfg[action_num].split("->")[1]):
+            if (cfg[action_num].split("->")[1].strip()=="''"):
                 numpopper = 0
             print("numpopper : ",numpopper)
             print("Reducing by production rule : ",cfg[action_num])

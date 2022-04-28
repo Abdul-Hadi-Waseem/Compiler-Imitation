@@ -47,17 +47,19 @@ def extract_table(filename):
         headers = headers.flatten()[1:]
         data = data.values
         data = data[:, 1:]
-        #delete full column from data and headers
-        headers = np.delete(headers, 42)
-        data = np.delete(data, [42], axis=1)
 
+        #delete full column from data and headers
+        headers = np.delete(headers, 38)
+        data = np.delete(data, [38], axis=1)
+
+        # print(headers)
         print(data.shape)
         print(headers.shape)
         new_data = []
         for row in data:
             new_data.append({headers[i]:row[i] for i in range(len(headers))})
+        # print(bool(new_data[14]['int'].strip()))
         data = new_data
-        print(data[11])
         return data
     except:
         # check if file exists
@@ -80,6 +82,8 @@ def extract_cfg(filename):
         
         #Convert to numpy array
         data = np.array(data)
+        # for e, i in enumerate(data):
+        #     print(e, i)
         return data
 
     except:
@@ -94,5 +98,9 @@ if __name__ == "__main__":
     #filename = "test.txt"
     #print(getFileSize(filename))
     #print(extract_table(filename))
-    filename = "./Grammer/parser_LALR1_table.tsv"
-    data = extract_table(filename)
+
+    # filename = "./Grammer/parser_LALR1_table.tsv"
+    # data = extract_table(filename)
+
+    filename = "./Grammer/Sheesh_CFG.txt"
+    data = extract_cfg(filename)

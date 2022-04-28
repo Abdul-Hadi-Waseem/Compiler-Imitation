@@ -139,5 +139,5 @@ def lexermain():
     ] + lexeme_list
     lexeme_list_table = AsciiTable(lexeme_list)
     # PRINT TABLES:=>
-    # print(lexeme_list_table.table)
+    print(lexeme_list_table.table)
     return lexeme_list

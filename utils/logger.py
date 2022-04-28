@@ -20,7 +20,7 @@ class Logger(object):
     def append(self, stack):
         stack_str  = ""
         for stack_tok in stack:
-            stack_str += stack_tok
+            stack_str += " " + stack_tok
         if not isinstance(stack_str, str):
             try:
                 stack_str = str(stack_str)

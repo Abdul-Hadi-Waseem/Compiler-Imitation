@@ -1,8 +1,10 @@
 import sys, os
 
-sys.path.append(os.path.abspath(os.path.join("..")))
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+sys.path.append("..")
 
-from data.hash_maps import keywords_map, identifier_list, operator_list, delimiter_list
+from Grammer.hash_maps import keywords_map, identifier_list, operator_list, delimiter_list
 from collections import defaultdict
 from utils.tokenizer_utils import (
     is_valid_token,
@@ -102,8 +104,7 @@ def addTokenVal(lexeme_list):
                 )
     return temp_lexeme_list
 
-
-# print("{")
-# for num,i in enumerate(keywords_map,29):
-#     print(f"\"{i}\":{num},")
-# print("}")
+print("{")
+for num,i in enumerate(keywords_map,27):
+    print(f"\"{i}\":{num},")
+print("}")

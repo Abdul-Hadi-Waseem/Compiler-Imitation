@@ -9,7 +9,7 @@ Windows.enable()
 
 from utils.openfile import openSheeshfile, getFileSize
 from utils.tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
-
+from SDT_SDD import intermediate_code_gen
 
 def lexicar(file_path="sheeshfile.txt"):
     """
@@ -124,13 +124,7 @@ def lexicar(file_path="sheeshfile.txt"):
     return lexeme_list
 
 
-def lexermain():
-    # get filename from the arguments in the terminal
-
-    # filename = sys.argv[1]  # Takes filename from the terminal
-
-    filename = "Testcases/fact.sheesh"  # uncomment this and give filename here if not from terminal
-
+def lexermain(filename):
     lexeme_list = lexicar(filename)
     lexeme_list = [
         ["Token line", "Token", "Token value", "Token Category"]

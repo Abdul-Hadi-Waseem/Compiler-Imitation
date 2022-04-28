@@ -1,8 +1,9 @@
 import lexer_main
+import sys
 from utils.openfile import extract_table, extract_cfg
 from utils.logger import Logger
 from utils.inputLogger import InputLogger
-
+from SDT_SDD.intermediate_code_gen import intermediate_code_generator
 stack_logger = Logger("./Logs/stack_logger.log")
 err_logger = Logger("./Logs/err_logger.log")
 iptokens = InputLogger("./Logs/iptokens.log")
@@ -186,6 +187,14 @@ def top_down_parser(lexeme_list):
 
 
 if __name__ == "__main__":
-    lexeme_list = lexer_main.lexermain()
+    #Getting filename from command arguments
+    try:
+        filename = sys.argv[1]  # Takes filename from the terminal
+    except:
+        filename = "./default.sheesh"  # uncomment this and give filename here if not from terminal
+
+    lexeme_list = lexer_main.lexermain(filename)
     # lexeme_list = []
     top_down_parser(lexeme_list)
+    intermediate_code_generator()
+    print("\n\n","-"*60,"DONE","-"*60)

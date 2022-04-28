@@ -24,19 +24,20 @@ $ pip install -r /requirements.txt
 ```
 ### Run the following command to run the lexer:
 ```shell
-$ python3 lexer_main.py <filepath>
+$ python3 parser_main.py <filepath>
 ```
+Note: ./default.sheesh will run if no arguments are given.
 The following command will run the `lexer_main.py` file.
 It will print a table of the tokens.
 
 
-## NOTE
+## SPECS
 - Each file and funtion in the code is properly documented and commented about its input  arguments, return values and the functionality
 - All the keywords, operators and delimeters are defined in the `data.hash_maps.py` file
 - The `utils` folder provides with all the utility functions required for the lexer.
 - Testcases are provided in the `Testcases` folder. To run each of the testcases run the command:
   ```shell
-  $ python3 lexer_main.py Testcases/<filename>
+  $ python3 parser_main.py Testcases/<filename>
   ```
 
 ## Functionalities [updated : 22/02/2022]:

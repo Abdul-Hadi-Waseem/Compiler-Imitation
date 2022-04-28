@@ -74,4 +74,4 @@ CONTINUE -> continue NL
 FUNCTION_CALL -> call ID ( EXPRESSION_LIST ) NL
 FUNCTION_CALL -> call ID ( ) NL
 LINS -> NL
-LINS -> ''
+LINS ->

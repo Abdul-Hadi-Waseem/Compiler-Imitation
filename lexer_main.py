@@ -129,9 +129,7 @@ def lexermain():
 
     # filename = sys.argv[1]  # Takes filename from the terminal
 
-    filename = (
-        "Testcases/fact.sheesh"  # uncomment this and give filename here if not from terminal
-    )
+    filename = "Testcases/fact.sheesh"  # uncomment this and give filename here if not from terminal
 
     lexeme_list = lexicar(filename)
     lexeme_list = [

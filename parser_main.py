@@ -194,9 +194,11 @@ if __name__ == "__main__":
     lexeme_list = lexer_main.lexermain(filename)
     errtok = False
     for a,b,c,inv in lexeme_list:
-        if inv=="invalid":
+        if str(inv)=="invalid":
+            print(inv)
             errtok = True
-    if not errtok:
+    
+    if errtok:
         print("Invalid token exists in the program. Unable to parse!")
         print("\n\n","-"*60,"DONE","-"*60)
         sys.exit(4)

@@ -45,7 +45,7 @@ It will print a table of the tokens.
   $ python3 parser_main.py Testcases/<filename>
   ```
 
-## Functionalities [updated : 22/02/2022]:
+## Functionalities [updated : 28/04/2022]:
 
 ### Lexer phase    
   - Lexes
@@ -57,33 +57,17 @@ It will print a table of the tokens.
   - Output is properly printed in a table with four categories, namely:
     -  Token line
     -  Token
-    -  TOken value
+    -  Token value
     -  Token Category
 
-## Example:
-
-##### Example file:
+Here's an example.
+##### File:
 ```
-int fun( int n) { 
-if (n <= 1) {
-return 1
-} 
-return n*fact(n-1)
+def main() : void {
+    int a = 4c
+    return 0
+    5
 }
-~
-void main(void) { 
-int x 
-x = +1.3 
-c = 123c
-t:=1
-while (x <= 10) { 
-#"This is multiline string which will print error
-#in the file once uncommented." 
-shout(x)
-shout(fact(x))
-x = x + 1 
-}
-} 
 ```
 ##### Command to test the file:
 ```shell
@@ -93,91 +77,48 @@ $ python3 lexer_main.py Testcases/fact.sheesh
 Lexeme seperation successful.
 | Token line | Token  | Token value | Token Category |
 |------------|:-------:|:-------------:|----------------|
-| 1          | int    | 65          | keyword        |
-| 1          | fun    | 71          | identifier     |
-| 1          | (      | 25          | delimeter      |
-| 1          | int    | 65          | keyword        |
-| 1          | n      | 72          | identifier     |
-| 1          | )      | 26          | delimeter      |
-| 1          | {      | 21          | delimeter      |
-| 2          | ------ | 70          | new line       |
-| 2          | if     | 49          | keyword        |
-| 2          | (      | 25          | delimeter      |
-| 2          | n      | 72          | identifier     |
-| 2          | <=     | 18          | operator       |
-| 2          | 1      | 73          | integer_lit    |
-| 2          | )      | 26          | delimeter      |
-| 2          | {      | 21          | delimeter      |
-| 3          | ------ | 70          | new line       |
-| 3          | return | 59          | keyword        |
-| 4          | 1      | 73          | integer_lit    |
-| 4          | ------ | 70          | new line       |
-| 4          | }      | 22          | delimeter      |
-| 5          | ------ | 70          | new line       |
-| 5          | return | 59          | keyword        |
-| 5          | n      | 72          | identifier     |
-| 5          | *      | 3           | operator       |
-| 5          | fact   | 74          | identifier     |
-| 5          | (      | 25          | delimeter      |
-| 5          | n      | 72          | identifier     |
-| 5          | -      | 2           | operator       |
-| 5          | 1      | 73          | integer_lit    |
-| 5          | )      | 26          | delimeter      |
-| 6          | ------ | 70          | new line       |
-| 6          | }      | 22          | delimeter      |
-| 7          | ------ | 70          | new line       |
-| 7          | ~      | 13          | operator       |
-| 8          | ------ | 70          | new line       |
-| 8          | void   | 75          | identifier     |
-| 8          | main   | 76          | identifier     |
-| 8          | (      | 25          | delimeter      |
-| 8          | void   | 75          | identifier     |
-| 8          | )      | 26          | delimeter      |
-| 8          | {      | 21          | delimeter      |
-| 9          | ------ | 70          | new line       |
-| 9          | int    | 65          | keyword        |
-| 9          | x      | 77          | identifier     |
-| 10         | ------ | 70          | new line       |
-| 10         | x      | 77          | identifier     |
-| 10         | =      | 14          | operator       |
-| 10         | +      | 1           | operator       |
-| 10         | 1.3    | 78          | float_lit      |
-| 11         | ------ | 70          | new line       |
-| 11         | c      | 79          | identifier     |
-| 11         | =      | 14          | operator       |
-| 12         | 123c   | err         | invalid        |
-| 12         | ------ | 70          | new line       |
-| 12         | t      | 80          | identifier     |
-| 12         | :=     | 11          | operator       |
-| 13         | 1      | 73          | integer_lit    |
-| 13         | ------ | 70          | new line       |
-| 13         | while  | 62          | keyword        |
-| 13         | (      | 25          | delimeter      |
-| 13         | x      | 77          | identifier     |
-| 13         | <=     | 18          | operator       |
-| 13         | 10     | 81          | integer_lit    |
-| 13         | )      | 26          | delimeter      |
-| 13         | {      | 21          | delimeter      |
-| 14         | ------ | 70          | new line       |
-| 16         | shout  | 60          | keyword        |
-| 16         | (      | 25          | delimeter      |
-| 16         | x      | 77          | identifier     |
-| 16         | )      | 26          | delimeter      |
-| 17         | ------ | 70          | new line       |
-| 17         | shout  | 60          | keyword        |
-| 17         | (      | 25          | delimeter      |
-| 17         | fact   | 74          | identifier     |
-| 17         | (      | 25          | delimeter      |
-| 17         | x      | 77          | identifier     |
-| 17         | )      | 26          | delimeter      |
-| 17         | )      | 26          | delimeter      |
-| 18         | ------ | 70          | new line       |
-| 18         | x      | 77          | identifier     |
-| 18         | =      | 14          | operator       |
-| 18         | x      | 77          | identifier     |
-| 18         | +      | 1           | operator       |
-| 18         | 1      | 73          | integer_lit    |
-| 19         | ------ | 70          | new line       |
-| 19         | }      | 22          | delimeter      |
-| 20         | ------ | 70          | new line       |
-| 20         | }      | 22          | delimeter      |
+| 1          | def    | 38          | keyword        |
+| 1          | main   | 70          | keyword        |
+| 1          | (      | 23          | delimeter      |
+| 1          | )      | 24          | delimeter      |
+| 1          | :      | 10          | operator       |
+| 1          | void   | 71          | keyword        |
+| 1          | {      | 19          | delimeter      |
+| 2          | NL     | 68          | new line       |
+| 2          | int    | 63          | keyword        |
+| 2          | a      | 73          | identifier     |
+| 2          | =      | 12          | operator       |
+| 3          | 4c     | err         | invalid        |
+| 3          | NL     | 68          | new line       |
+| 3          | return | 57          | keyword        |
+| 4          | 0      | 74          | integer_lit    |
+| 4          | NL     | 68          | new line       |
+| 5          | 5      | 75          | integer_lit    |
+| 5          | NL     | 68          | new line       |
+| 5          | }      | 20          | delimeter      |
+
+
+###Parser phase
+  - Parses
+  - Uses a custom CFG called Sheesh_CFG.
+  - Parse table created using LALR(1) parsing technique.
+  - Efficiently uses parse table to process the incoming input string.
+  - Gives error on multiline strings and prints each error after reading through the file. Parser also prints the line at which the error occurs.
+  - Errors are automatically dealt with by the parser. The parser will not stop on the first error and will continue finding more errors.
+  - Output is properly printed in a table with four categories, namely:
+    -  Token line
+    -  Token
+    -  Token value
+    -  Token Category
+
+Here's the same example.
+##### File:
+```
+def main() : void {
+    int a = 4c
+    return 0
+    5
+}
+```
+#####Output:
+`Parsed this bad boy.`

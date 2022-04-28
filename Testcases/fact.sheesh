@@ -1,11 +1,4 @@
 def main() : void {
-    int x = ((3+4)+5)
-        if ((3==4))
-    {
-        return 1
-    }
-    loop(x>2){
-        return 2
-    }
-    return 0
+    int a = 4
+    5
 }

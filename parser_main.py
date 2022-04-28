@@ -73,12 +73,18 @@ def top_down_parser(lexeme_list):
 
     logger.append(stack[::-1])
     accept_flag = False
+    isError = False
 
     while not accept_flag:
         print("\n")
         if top(stack).isdigit():
             row = top(stack)
-            curr_lexeme = token_list[0]
+            if isError:
+                curr_lexeme = token_list[1]
+                print(curr_lexeme)
+                isError = False
+            else:
+                curr_lexeme = token_list[0]
             col = curr_lexeme
         else:
             row = top(stack, 2)
@@ -88,13 +94,17 @@ def top_down_parser(lexeme_list):
             logger.append(stack[::-1])
 
             continue
-
+        
         print(f"Parse Table[{row}]['{col}'] entry: {parse_table[int(row)][col]}")
         # temp = parse_table[13]['ARRAY']
         temp = parse_table[int(row)][col]
         if not temp.strip():
-            print("Eror aaya :(")
-            exit()
+            isError = True
+            print("Eror Handling Panic Mode :=>")
+            stack.pop()
+            stack.pop()
+            continue
+
 
         if temp == "acc":
             accept_flag = True

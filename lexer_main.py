@@ -62,7 +62,7 @@ def lexicar(file_path="sheeshfile.txt"):
 
         # Errors support
         if curr_char == "\n" and quote_flag:
-            errors.append(["Error parsing at line", line_count])
+            errors.append(["Lexical Error at line", line_count])
             quote_flag = False
             # print("Error parsing at line",line_count)
             # sys.exit(2)
@@ -139,3 +139,6 @@ def lexermain():
     # PRINT TABLES:=>
     print(lexeme_list_table.table)
     return lexeme_list
+
+# if __name__ == "__main__":
+#     lexermain()

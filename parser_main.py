@@ -41,6 +41,12 @@ def token_list_generator(lexeme_list):
         token_list.append(lexeme[1])
     token_list.pop(0)
     return token_list
+
+def print_tokens(token_list):
+    print("TOKENS:", end=" ")
+    for token in token_list:
+        print(token, end = " ")
+    print()
     
 def top_down_parser(lexeme_list):
     """
@@ -50,6 +56,8 @@ def top_down_parser(lexeme_list):
     #Extracting tokens from lexeme list
     token_list = token_list_generator(lexeme_list)
     token_list.append('$')
+    # print(f"TOKENS: {token_list}")
+    print_tokens(token_list)
 
     #Extracting table and cfg from respective files
     parse_table = extract_table(TABLE_LOC)
@@ -63,26 +71,22 @@ def top_down_parser(lexeme_list):
     accept_flag = False
 
     while(not accept_flag):
+        print("\n")
         if (top(stack).isdigit()):
-            # SHIFT CASE
             row = top(stack)
             curr_lexeme = token_list[0]
-            col = curr_lexeme                      #Coz col cannot be a variable name
+            col = curr_lexeme                      
         else:
-            # REDUCE CASE
             row = top(stack, 2)
             col = top(stack)
             print(f"row col after reduce case: ({row},{col})")
-            
             stack.append(parse_table[int(row)][col])
-            
             logger.append(stack[::-1])
             
             continue
             
             
-        print(f"ROW: {row}, COL: {col}")
-        print(f"Parse Table entry: {parse_table[int(row)][col]}")
+        print(f"Parse Table[{row}][\'{col}\'] entry: {parse_table[int(row)][col]}")
         # temp = parse_table[13]['ARRAY']
         temp = parse_table[int(row)][col]
         if not temp.strip():
@@ -95,12 +99,11 @@ def top_down_parser(lexeme_list):
             # break
         
         if temp.isdigit():
-            
             continue
+
         action = temp[0]
         action_num = temp[1:]
         
-        print(temp)
         if action=='s':
             if (len(token_list)==0):
                 print("Smthin wrong.")
@@ -111,7 +114,6 @@ def top_down_parser(lexeme_list):
             stack.append(curr_token)
             str_action_num = str(action_num)
             stack.append(str_action_num)
-
             logger.append(stack[::-1])
 
             continue     
@@ -119,27 +121,20 @@ def top_down_parser(lexeme_list):
         if action=='r':
             print("Reduce")
             action_num = int(action_num)
-            # print("cfg[action_num].split(" ")[1] : ",cfg[action_num].split("->")[1])
-            print(cfg[action_num].split("->")[1].strip().split(" "))
-            numpopper = len(cfg[action_num].split("->")[1].strip().split(" "))
+            # print(cfg[action_num].split("->")[1].strip().split(" "))
+            numpopper = len(cfg[action_num].split("->")[1].strip().split(" "))      
+            if (not cfg[action_num].split("->")[1]):
+                numpopper = 0
             print("numpopper : ",numpopper)
+            print("Reducing by production rule : ",cfg[action_num])
             for i in range(numpopper):
                 stack.pop()
                 stack.pop()
             
             stack.append(cfg[action_num].split("->")[0].strip())
-            # stack.append(str(action_num))
-
             logger.append(stack[::-1])
-
-            continue     
-      
-        # # print(parse_table[int(stack[-1]), :])
-        # # accept_flag = True
-        # pass
-            
-
-    
+            print(stack)
+            continue
 
 if __name__ == "__main__":
     lexeme_list = lexer_main.lexermain()

@@ -49,16 +49,21 @@ def extract_table(filename):
         data = data[:, 1:]
 
         #delete full column from data and headers
-        headers = np.delete(headers, 38)
-        data = np.delete(data, [38], axis=1)
+        # headers = np.delete(headers, 38)
+        # data = np.delete(data, [38], axis=1)
 
-        # print(headers)
+        #Find index of 'while' column
+        while_idx = np.where(headers == 'while')[0][0]
+        print(f"while index: {while_idx}")
+        headers[while_idx+1] = ''
+
+        print(headers)
         print(data.shape)
         print(headers.shape)
         new_data = []
         for row in data:
             new_data.append({headers[i]:row[i] for i in range(len(headers))})
-        # print(bool(new_data[14]['int'].strip()))
+        # print(data[1])
         data = new_data
         return data
     except:
@@ -99,8 +104,8 @@ if __name__ == "__main__":
     #print(getFileSize(filename))
     #print(extract_table(filename))
 
-    # filename = "./Grammer/parser_LALR1_table.tsv"
-    # data = extract_table(filename)
+    filename = "./Grammer/parser_LALR1_table.tsv"
+    data = extract_table(filename)
 
-    filename = "./Grammer/Sheesh_CFG.txt"
-    data = extract_cfg(filename)
+    # filename = "./Grammer/Sheesh_CFG.txt"
+    # data = extract_cfg(filename)

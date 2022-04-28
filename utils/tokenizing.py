@@ -104,7 +104,7 @@ def addTokenVal(lexeme_list):
                 )
     return temp_lexeme_list
 
-print("{")
-for num,i in enumerate(keywords_map,27):
-    print(f"\"{i}\":{num},")
-print("}")
+# print("{")
+# for num,i in enumerate(keywords_map,27):
+#     print(f"\"{i}\":{num},")
+# print("}")

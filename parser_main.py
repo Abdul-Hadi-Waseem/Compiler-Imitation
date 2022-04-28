@@ -4,6 +4,7 @@ from utils.openfile import extract_table, extract_cfg
 from utils.logger import Logger
 from utils.inputLogger import InputLogger
 from SDT_SDD.intermediate_code_gen import intermediate_code_generator
+
 stack_logger = Logger("./Logs/stack_logger.log")
 err_logger = Logger("./Logs/err_logger.log")
 iptokens = InputLogger("./Logs/iptokens.log")
@@ -84,7 +85,7 @@ def top_down_parser(lexeme_list):
     curr_row = None
     prev_row1 = None
     prev_row2 = None
-    errcnt=0
+    errcnt = 0
     while not accept_flag:
 
         print("\n")
@@ -114,27 +115,25 @@ def top_down_parser(lexeme_list):
             stack_logger.append(stack[::-1])
             iptokens.append(token_list)
             continue
-        
+
         print(f"Parse Table[{row}]['{col}'] entry: {parse_table[int(row)][col]}")
         # temp = parse_table[13]['ARRAY']
         temp = parse_table[int(row)][col]
         if not temp.strip():
-            errcnt+=1
+            errcnt += 1
             print("Error Handling Panic Mode :=>")
             isError = True
             stack.pop()
             stack.pop()
             token_list.pop(0)
-            
+
             # curr_lexeme = token_list[1]
-            
+
             stack_logger.append(stack[::-1])
             iptokens.append(token_list)
             err_logger.append(f"Error {errcnt}: {prev_token2} , Line : {prev_row2-1}")
-            
-            
-            continue
 
+            continue
 
         if temp == "acc":
             accept_flag = True
@@ -157,7 +156,7 @@ def top_down_parser(lexeme_list):
             stack.append(curr_token)
             str_action_num = str(action_num)
             stack.append(str_action_num)
-            
+
             stack_logger.append(stack[::-1])
             iptokens.append(token_list)
 
@@ -185,7 +184,7 @@ def top_down_parser(lexeme_list):
 
 
 if __name__ == "__main__":
-    #Getting filename from command arguments
+    # Getting filename from command arguments
     try:
         filename = sys.argv[1]  # Takes filename from the terminal
     except:
@@ -193,17 +192,17 @@ if __name__ == "__main__":
 
     lexeme_list = lexer_main.lexermain(filename)
     errtok = False
-    for a,b,c,inv in lexeme_list:
-        if str(inv)=="invalid":
+    for a, b, c, inv in lexeme_list:
+        if str(inv) == "invalid":
             print(inv)
             errtok = True
-    
+
     if errtok:
         print("Invalid token exists in the program. Unable to parse!")
-        print("\n\n","-"*60,"DONE","-"*60)
+        print("\n\n", "-" * 60, "DONE", "-" * 60)
         sys.exit(4)
 
     # lexeme_list = []
     top_down_parser(lexeme_list)
     intermediate_code_generator(filename)
-    print("\n\n","-"*60,"DONE","-"*60)
+    print("\n\n", "-" * 60, "DONE", "-" * 60)

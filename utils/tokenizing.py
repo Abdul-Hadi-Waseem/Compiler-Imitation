@@ -22,6 +22,7 @@ from colorclass import Color, Windows
 
 total_keywords = len(operator_list) + len(delimiter_list) + len(keywords_map)
 
+
 def token_info(token):
     """
     NOTE: the token needs to be a valid token

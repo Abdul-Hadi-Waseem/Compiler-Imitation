@@ -22,7 +22,7 @@ class InputLogger(object):
 
     def append(self, inp):
         inp_str = ""
-        for inp_tok,line in inp:
+        for inp_tok, line in inp:
             inp_str += " " + inp_tok
         if not isinstance(inp_str, str):
             try:

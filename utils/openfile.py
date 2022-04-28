@@ -19,6 +19,7 @@ def openSheeshfile(filename):
             FileNotFoundError()
             sys.exit(1)
 
+
 def openloggerfile(filename):
     """
     Args: filename [string] name of the sheesh file
@@ -33,6 +34,7 @@ def openloggerfile(filename):
             print("ERR: File does not exists")
             FileNotFoundError()
             sys.exit(1)
+
 
 def getFileSize(filename):
     """

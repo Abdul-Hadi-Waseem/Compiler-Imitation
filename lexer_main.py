@@ -11,6 +11,7 @@ from utils.openfile import openSheeshfile, getFileSize
 from utils.tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
 from SDT_SDD import intermediate_code_gen
 
+
 def lexicar(file_path="sheeshfile.txt"):
     """
     args: file_path [string] path to the file
@@ -134,5 +135,6 @@ def lexermain(filename):
     print(lexeme_list_table.table)
     return lexeme_list
 
-if __name__  == "__main__":
+
+if __name__ == "__main__":
     lexermain()

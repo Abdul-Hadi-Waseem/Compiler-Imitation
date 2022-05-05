@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\anjel\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.1\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="file:////home/neil/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.2/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
       
       
       
@@ -279,19 +279,27 @@ pre[data-line] .line-highlight[data-end]:after {
 <pre data-role="codeBlock" data-info="shell" class="language-shell">$ pip <span class="token function">install</span> -r /requirements.txt
 </pre><h3 class="mume-header" id="run-the-following-command-to-run-the-lexer">Run the following command to run the lexer:</h3>
 
-<pre data-role="codeBlock" data-info="shell" class="language-shell">$ python3 lexer_main.py <span class="token operator">&lt;</span>filepath<span class="token operator">&gt;</span>
-</pre><p>The following command will run the <code>lexer_main.py</code> file.<br>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">$ python3 parser_main.py <span class="token operator">&lt;</span>filepath<span class="token operator">&gt;</span>
+</pre><p>Note: ./default.sheesh will run if no arguments are given.<br>
+The following command will run the <code>lexer_main.py</code> file.<br>
 It will print a table of the tokens.</p>
-<h2 class="mume-header" id="note">NOTE</h2>
+<h2 class="mume-header" id="implementation-details">IMPLEMENTATION DETAILS</h2>
 
 <ul>
+<li>The lexer and parser are written in Python 3.6.</li>
 <li>Each file and funtion in the code is properly documented and commented about its input  arguments, return values and the functionality</li>
-<li>All the keywords, operators and delimeters are defined in the <code>data.hash_maps.py</code> file</li>
-<li>The <code>utils</code> folder provides with all the utility functions required for the lexer.</li>
-<li>Testcases are provided in the <code>Testcases</code> folder. To run each of the testcases run the command:<pre data-role="codeBlock" data-info="shell" class="language-shell">$ python3 lexer_main.py Testcases/<span class="token operator">&lt;</span>filename<span class="token operator">&gt;</span>
+<li>All the keywords, operators and delimeters are defined in the Grammer folder in the <code>hash_maps.py</code> file.</li>
+<li>Sheesh&apos;s CFG and corresponding parse table have also been defined in the Grammer folder as <code>Sheesh_CFG.txt</code> and <code>parse_LALR1_table.tsv</code></li>
+<li>The <code>utils</code> folder provides with all the utility functions required for the lexer and parser.</li>
+</ul>
+<h2 class="mume-header" id="additional-information">ADDITIONAL INFORMATION</h2>
+
+<ul>
+<li>Logs for stack, error and input string are stored in the <code>Logs</code> folder. Logs are captured in each iteration of the parsing process.</li>
+<li>Testcases are provided in the <code>Testcases</code> folder. To run each of the testcases run the command:<pre data-role="codeBlock" data-info="shell" class="language-shell">$ python3 parser_main.py Testcases/<span class="token operator">&lt;</span>filename<span class="token operator">&gt;</span>
 </pre></li>
 </ul>
-<h2 class="mume-header" id="functionalities-updated-22022022">Functionalities [updated : 22/02/2022]:</h2>
+<h2 class="mume-header" id="functionalities-updated-28042022">Functionalities [updated : 28/04/2022]:</h2>
 
 <h3 class="mume-header" id="lexer-phase">Lexer phase</h3>
 
@@ -306,35 +314,19 @@ It will print a table of the tokens.</p>
 <ul>
 <li>Token line</li>
 <li>Token</li>
-<li>TOken value</li>
+<li>Token value</li>
 <li>Token Category</li>
 </ul>
 </li>
 </ul>
-<h2 class="mume-header" id="example">Example:</h2>
+<p>Here&apos;s an example.</p>
+<h5 class="mume-header" id="file">File:</h5>
 
-<h5 class="mume-header" id="example-file">Example file:</h5>
-
-<pre data-role="codeBlock" data-info class="language-"><code>int fun( int n) { 
-if (n &lt;= 1) {
-return 1
-} 
-return n*fact(n-1)
+<pre data-role="codeBlock" data-info class="language-"><code>def main() : void {
+    int a = 4c
+    return 0
+    5
 }
-~
-void main(void) { 
-int x 
-x = +1.3 
-c = 123c
-t:=1
-while (x &lt;= 10) { 
-#&quot;This is multiline string which will print error
-#in the file once uncommented.&quot; 
-shout(x)
-shout(fact(x))
-x = x + 1 
-}
-} 
 </code></pre><h5 class="mume-header" id="command-to-test-the-file">Command to test the file:</h5>
 
 <pre data-role="codeBlock" data-info="shell" class="language-shell">$ python3 lexer_main.py Testcases/fact.sheesh
@@ -353,534 +345,149 @@ x = x + 1
 <tbody>
 <tr>
 <td>1</td>
-<td style="text-align:center">int</td>
-<td style="text-align:center">65</td>
+<td style="text-align:center">def</td>
+<td style="text-align:center">38</td>
 <td>keyword</td>
 </tr>
 <tr>
 <td>1</td>
-<td style="text-align:center">fun</td>
-<td style="text-align:center">71</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>1</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>1</td>
-<td style="text-align:center">int</td>
-<td style="text-align:center">65</td>
-<td>keyword</td>
-</tr>
-<tr>
-<td>1</td>
-<td style="text-align:center">n</td>
-<td style="text-align:center">72</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>1</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>1</td>
-<td style="text-align:center">{</td>
-<td style="text-align:center">21</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">if</td>
-<td style="text-align:center">49</td>
-<td>keyword</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">n</td>
-<td style="text-align:center">72</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">&lt;=</td>
-<td style="text-align:center">18</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">73</td>
-<td>integer_lit</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">{</td>
-<td style="text-align:center">21</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>3</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>3</td>
-<td style="text-align:center">return</td>
-<td style="text-align:center">59</td>
-<td>keyword</td>
-</tr>
-<tr>
-<td>4</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">73</td>
-<td>integer_lit</td>
-</tr>
-<tr>
-<td>4</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>4</td>
-<td style="text-align:center">}</td>
-<td style="text-align:center">22</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">return</td>
-<td style="text-align:center">59</td>
-<td>keyword</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">n</td>
-<td style="text-align:center">72</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">*</td>
-<td style="text-align:center">3</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">fact</td>
-<td style="text-align:center">74</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">n</td>
-<td style="text-align:center">72</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">2</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">73</td>
-<td>integer_lit</td>
-</tr>
-<tr>
-<td>5</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>6</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>6</td>
-<td style="text-align:center">}</td>
-<td style="text-align:center">22</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>7</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>7</td>
-<td style="text-align:center">~</td>
-<td style="text-align:center">13</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>8</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>8</td>
-<td style="text-align:center">void</td>
-<td style="text-align:center">75</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>8</td>
 <td style="text-align:center">main</td>
-<td style="text-align:center">76</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>8</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>8</td>
-<td style="text-align:center">void</td>
-<td style="text-align:center">75</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>8</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>8</td>
-<td style="text-align:center">{</td>
-<td style="text-align:center">21</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>9</td>
-<td style="text-align:center">------</td>
 <td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>9</td>
-<td style="text-align:center">int</td>
-<td style="text-align:center">65</td>
 <td>keyword</td>
 </tr>
 <tr>
-<td>9</td>
-<td style="text-align:center">x</td>
-<td style="text-align:center">77</td>
-<td>identifier</td>
+<td>1</td>
+<td style="text-align:center">(</td>
+<td style="text-align:center">23</td>
+<td>delimeter</td>
 </tr>
 <tr>
-<td>10</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
+<td>1</td>
+<td style="text-align:center">)</td>
+<td style="text-align:center">24</td>
+<td>delimeter</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:center">:</td>
+<td style="text-align:center">10</td>
+<td>operator</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:center">void</td>
+<td style="text-align:center">71</td>
+<td>keyword</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:center">{</td>
+<td style="text-align:center">19</td>
+<td>delimeter</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">NL</td>
+<td style="text-align:center">68</td>
 <td>new line</td>
 </tr>
 <tr>
-<td>10</td>
-<td style="text-align:center">x</td>
-<td style="text-align:center">77</td>
+<td>2</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">63</td>
+<td>keyword</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">73</td>
 <td>identifier</td>
 </tr>
 <tr>
-<td>10</td>
+<td>2</td>
 <td style="text-align:center">=</td>
-<td style="text-align:center">14</td>
+<td style="text-align:center">12</td>
 <td>operator</td>
 </tr>
 <tr>
-<td>10</td>
-<td style="text-align:center">+</td>
-<td style="text-align:center">1</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>10</td>
-<td style="text-align:center">1.3</td>
-<td style="text-align:center">78</td>
-<td>float_lit</td>
-</tr>
-<tr>
-<td>11</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>11</td>
-<td style="text-align:center">c</td>
-<td style="text-align:center">79</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>11</td>
-<td style="text-align:center">=</td>
-<td style="text-align:center">14</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>12</td>
-<td style="text-align:center">123c</td>
+<td>3</td>
+<td style="text-align:center">4c</td>
 <td style="text-align:center">err</td>
 <td>invalid</td>
 </tr>
 <tr>
-<td>12</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
+<td>3</td>
+<td style="text-align:center">NL</td>
+<td style="text-align:center">68</td>
 <td>new line</td>
 </tr>
 <tr>
-<td>12</td>
-<td style="text-align:center">t</td>
-<td style="text-align:center">80</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>12</td>
-<td style="text-align:center">:=</td>
-<td style="text-align:center">11</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">73</td>
-<td>integer_lit</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">while</td>
-<td style="text-align:center">62</td>
+<td>3</td>
+<td style="text-align:center">return</td>
+<td style="text-align:center">57</td>
 <td>keyword</td>
 </tr>
 <tr>
-<td>13</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">x</td>
-<td style="text-align:center">77</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">&lt;=</td>
-<td style="text-align:center">18</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">81</td>
-<td>integer_lit</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>13</td>
-<td style="text-align:center">{</td>
-<td style="text-align:center">21</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>14</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>16</td>
-<td style="text-align:center">shout</td>
-<td style="text-align:center">60</td>
-<td>keyword</td>
-</tr>
-<tr>
-<td>16</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>16</td>
-<td style="text-align:center">x</td>
-<td style="text-align:center">77</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>16</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">shout</td>
-<td style="text-align:center">60</td>
-<td>keyword</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">fact</td>
+<td>4</td>
+<td style="text-align:center">0</td>
 <td style="text-align:center">74</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">(</td>
-<td style="text-align:center">25</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">x</td>
-<td style="text-align:center">77</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>17</td>
-<td style="text-align:center">)</td>
-<td style="text-align:center">26</td>
-<td>delimeter</td>
-</tr>
-<tr>
-<td>18</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
-<td>new line</td>
-</tr>
-<tr>
-<td>18</td>
-<td style="text-align:center">x</td>
-<td style="text-align:center">77</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>18</td>
-<td style="text-align:center">=</td>
-<td style="text-align:center">14</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>18</td>
-<td style="text-align:center">x</td>
-<td style="text-align:center">77</td>
-<td>identifier</td>
-</tr>
-<tr>
-<td>18</td>
-<td style="text-align:center">+</td>
-<td style="text-align:center">1</td>
-<td>operator</td>
-</tr>
-<tr>
-<td>18</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">73</td>
 <td>integer_lit</td>
 </tr>
 <tr>
-<td>19</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
+<td>4</td>
+<td style="text-align:center">NL</td>
+<td style="text-align:center">68</td>
 <td>new line</td>
 </tr>
 <tr>
-<td>19</td>
-<td style="text-align:center">}</td>
-<td style="text-align:center">22</td>
-<td>delimeter</td>
+<td>5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">75</td>
+<td>integer_lit</td>
 </tr>
 <tr>
-<td>20</td>
-<td style="text-align:center">------</td>
-<td style="text-align:center">70</td>
+<td>5</td>
+<td style="text-align:center">NL</td>
+<td style="text-align:center">68</td>
 <td>new line</td>
 </tr>
 <tr>
-<td>20</td>
+<td>5</td>
 <td style="text-align:center">}</td>
-<td style="text-align:center">22</td>
+<td style="text-align:center">20</td>
 <td>delimeter</td>
 </tr>
 </tbody>
 </table>
+<h3 class="mume-header" id="parser-phase">Parser phase</h3>
+
+<ul>
+<li>Parses</li>
+<li>Uses a custom CFG called Sheesh_CFG.</li>
+<li>Parse table created using LALR(1) parsing technique.</li>
+<li>Efficiently uses parse table to process the incoming input string.</li>
+<li>Gives error on multiline strings and prints each error after reading through the file. Parser also prints the line at which the error occurs.</li>
+<li>Errors are automatically dealt with by the parser. The parser will not stop on the first error and will continue finding more errors.</li>
+<li>Output is properly printed in a table with four categories, namely:
+<ul>
+<li>Token line</li>
+<li>Token</li>
+<li>Token value</li>
+<li>Token Category</li>
+</ul>
+</li>
+</ul>
+<p>Here&apos;s the same example.</p>
+<h5 class="mume-header" id="file-1">File:</h5>
+
+<pre data-role="codeBlock" data-info class="language-"><code>def main() : void {
+    int a = 4c
+    return 0
+    5
+}
+</code></pre><h5 class="mume-header" id="output-1">Output:</h5>
+
+<p><code>Parsed this bad boy.</code></p>
 
       </div>
       

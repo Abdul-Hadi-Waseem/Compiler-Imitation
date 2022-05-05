@@ -19,6 +19,7 @@ def openSheeshfile(filename):
             FileNotFoundError()
             sys.exit(1)
 
+
 def openloggerfile(filename):
     """
     Args: filename [string] name of the sheesh file
@@ -33,6 +34,7 @@ def openloggerfile(filename):
             print("ERR: File does not exists")
             FileNotFoundError()
             sys.exit(1)
+
 
 def getFileSize(filename):
     """
@@ -74,9 +76,9 @@ def extract_table(filename):
         # print(f"while index: {while_idx}")
         # headers[while_idx + 1] = ""
 
-        print(headers)
-        print(data.shape)
-        print(headers.shape)
+        # print(headers)
+        # print(data.shape)
+        # print(headers.shape)
         new_data = []
         for row in data:
             new_data.append({headers[i]: row[i] for i in range(len(headers))})

@@ -11,6 +11,7 @@ from utils.openfile import openSheeshfile, getFileSize
 from utils.tokenizing import keywords_map, delimeter_val, operator_val, addTokenVal
 from SDT_SDD import intermediate_code_gen
 
+
 def lexicar(file_path="sheeshfile.txt"):
     """
     args: file_path [string] path to the file
@@ -31,7 +32,7 @@ def lexicar(file_path="sheeshfile.txt"):
     cumment_flag = False
     while True:
         cnt += 1
-        # time.sleep(0.001)   #Just so it looks cool
+        time.sleep(0.01)   #Just so it looks cool
 
         print("\rProgress : {0}%".format(round(cnt * 100 / file_size, 2)), end="\r")
 
@@ -134,5 +135,6 @@ def lexermain(filename):
     print(lexeme_list_table.table)
     return lexeme_list
 
-if __name__  == "__main__":
+
+if __name__ == "__main__":
     lexermain()

@@ -22,7 +22,7 @@ class InputLogger(object):
 
     def append(self, inp):
         inp_str = ""
-        for inp_tok,line in inp:
+        for inp_tok, line in inp:
             inp_str += " " + inp_tok
         if not isinstance(inp_str, str):
             try:
@@ -30,12 +30,12 @@ class InputLogger(object):
             except:
                 traceback.print_exc()
             else:
-                print(inp_str)
+                # print(inp_str)
 
                 self.file.write(inp_str + "\n")
                 self.file.flush()
         else:
-            print(inp_str)
+            # print(inp_str)
             self.file.write(inp_str + "\n")
             self.file.flush()
 
